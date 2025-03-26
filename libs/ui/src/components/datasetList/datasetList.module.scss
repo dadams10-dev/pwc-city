@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--spacing-2);
+    overflow-x: scroll; // looks ok on a Mac, will look awful on Windows
+    padding: var(--spacing-8) 0;
+    width: calc(100% + 16px); // better to reorganise the containing divs to avoid this sort of thing
+}
+
+.datasetChip[class*="inactive"] {
+    background: var(--colour-background-default);
+}

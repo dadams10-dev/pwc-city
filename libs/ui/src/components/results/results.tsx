@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { DatasetList } from '../datasetList/datasetList';
+import styles from './results.module.scss';
+import Item from './components/item/item';
 
-type ResultItem = {
+export type ResultItem = {
     id: string;
     url: string;
     body: string;
@@ -113,8 +115,8 @@ export const Results =  () => {
     ) : (
         <>
             <DatasetList datasets={datasets} activeDataset={activeDataset} setActiveDataset={setActiveDataset} />
-            <p>Showing results for <strong>phil foden</strong></p>
-            <div>
+            <p className={`${styles.showingFor} body-xsmall`}>Showing results for <strong>phil foden</strong></p>
+            <div className={styles.resultItems}>
                 {itemCount === 0 ? (
                     <p>Sorry. There are no items to show of this type. Please choose another type.</p>
                 ) : null}
@@ -125,13 +127,14 @@ export const Results =  () => {
                         day: 'numeric'
                     })
                     return (
-                    <article key={item.id}>
-                        <img src={`${item.image?.url || 'https://www.mancity.com/meta/media/zzmf0yr0/comingup_16x9_mar.jpg'}?width=164`} alt={item.image?.altText || item.title} />
-                        <h3>Subtitle</h3>
-                        <span>{formattedDate}</span>
-                        <h2>{item.title}</h2>
-                        <p>{item.body}...</p>
-                    </article>
+                        <Item item={item} formattedDate={formattedDate} key={item.id} />
+                        // <article key={item.id}>
+                        //     <img src={`${item.image?.url || 'https://www.mancity.com/meta/media/zzmf0yr0/comingup_16x9_mar.jpg'}?width=164`} alt={item.image?.altText || item.title} />
+                        //     <h3>Subtitle</h3>
+                        //     <span>{formattedDate}</span>
+                        //     <h2>{item.title}</h2>
+                        //     <p>{item.body}...</p>
+                        // </article>
                 )})}
             </div>
         </>

@@ -1,0 +1,80 @@
+.item {
+    background-color: var(--colour-background-default);
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: min-content min-content;
+    row-gap: var(--spacing-4);
+    column-gap: var(--spacing-5);
+    padding: var(--spacing-6);
+
+    &:first-child {
+        border-top-left-radius: var(--border-radius-xlarge);
+        border-top-right-radius: var(--border-radius-xlarge);
+    }
+
+    &:last-child {
+        border-bottom-left-radius: var(--border-radius-xlarge);
+        border-bottom-right-radius: var(--border-radius-xlarge);
+    }
+
+    img {
+        border-radius: var(--border-radius-small);
+        height: 80px;
+        object-fit: cover;
+        width: 80px;
+    }
+
+    // h2 {
+    //     margin-bottom: var(--spacing-4);
+    // }
+
+    p {
+        grid-column: span 2;
+    }
+
+    @media only screen and (min-width: 768px) {
+        grid-template-columns: 164px 1fr;
+        column-gap: var(--spacing-6);
+
+        .imgLink {
+            grid-row: span 2;
+        }
+
+        img {
+            border-radius: var(--border-radius-medium);
+            height: 92px;
+            object-fit: cover;
+            width: 164px;
+        }
+        
+        p {
+            grid-column: 2 / span 1;
+        }
+    }
+}
+
+.labelDate {
+    margin-bottom: var(--spacing-2);
+}
+
+.label {
+    color: var(--colour-content-accent-primary);
+    margin-right: var(--spacing-2);
+    text-transform: uppercase;
+}
+
+.date {
+    color: var(--colour-content-tertiary);
+    margin-left: var(--spacing-2);
+}
+
+// I'm always a little wary about making a link look less like a link. But I made the assumption
+// that the title would be a link and its quite a common pattern
+.titleLink {
+    color: var(--colour-content-primary);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
