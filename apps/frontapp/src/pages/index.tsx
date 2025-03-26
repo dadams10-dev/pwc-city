@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 
-import { Test } from '@city-frontend-test/ui';
+import { Test, Results } from '@city-frontend-test/ui';
 
 export function Index() {
   /*
@@ -13,6 +13,7 @@ export function Index() {
       <div className="row">
         <div className="col-12">
           <div className={styles.page}>
+            <Results />
             <Test />
           </div>
         </div>
