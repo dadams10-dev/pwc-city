@@ -47,20 +47,20 @@ export const Results =  () => {
     }
 
     const datasets: string[] | null = data ? Object.keys(data).filter((key) => key.includes('Results')) : null;
-    console.log(datasets);
     const itemCount = data ? data[activeDataset].totalResultsCount : null;
 
     // To do - better loading/pending state. 
     // I'd assume there would be a design or a generic loading spinner component for this.
     return status === 'pending' ? (
         <div className={styles.resultsContainer}>
-            <p>Search results are loading ...</p>
+            <p className={styles.loadingCopy}>Search results are loading ...</p>
         </div>
     ) : (
-        // I experimented with nesting the grid by adding row and col-9 div's here to limit the width
+        // I experimented with nesting the grid by adding row and col-9/col-8 div's here to limit the width
         // of the results container on desktop size screens. Neither gave me the width I was after,
         // and I also started to get into conditionally adding classes based on screen width. I personally 
-        // prefer to handle it in CSS to avoid having to listen for changes of screen width.
+        // prefer to handle it in CSS to avoid having to check screen widths in JS and then
+        // listen for any changes of screen width.
         <div className={styles.resultsContainer}>
             <DatasetList datasets={datasets} activeDataset={activeDataset} setActiveDataset={setActiveDataset} />
             <p className={`${styles.showingFor} body-xsmall`}>Showing results for <strong>phil foden</strong></p>

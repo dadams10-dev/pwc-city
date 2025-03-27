@@ -17,6 +17,11 @@
         border-bottom-right-radius: var(--border-radius-xlarge);
     }
 
+    // Handling height and width of image here as adding ?width=80 to the 
+    // img src didn't always work depending on where the image was being
+    // served from.
+    // If this were reliable then using picture element and/or srcset would
+    // be more optimal than cropping the large image
     img {
         border-radius: var(--border-radius-small);
         height: 80px;
