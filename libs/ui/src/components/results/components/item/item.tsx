@@ -10,6 +10,10 @@ export default function Item({item, formattedDate}: ItemProps) {
 
     // Assumption: image and title will be links to the individual page for the article/video/shop item
 
+    // To do - add the icon next to the title using the Icon component from the elements directory.
+    // I assume this would be selected based on the value of the "category" for each item... or potentially
+    // the value of "source"?
+
     return (
         <article className={styles.item}>
             <a href={item.url} className={styles.imgLink}>

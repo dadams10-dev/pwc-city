@@ -30,67 +30,7 @@ type ResultsData = {
     };
 }
 
-// type ResultsData = {
-//     pagination: {
-//         itemsPerPage: number;
-//         currentPage: number;
-//     };
-//     suggestion?: string;
-//     allResults: {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     [key: string] : {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     newsResults: {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     shopResults: {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     videoResults: {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     freeFormResults: {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     helpCentreResults: {
-//         totalResultsCount: number;
-//         results: [
-//             ResultItem
-//         ]
-//     };
-//     doesContainProfanity: boolean;
-//     actions: [
-//         {
-//             actionText: string;
-//             url: string;
-//             keyWords: string[];
-//             image?: string;
-//         }
-//     ]
-// }
-
 export const Results =  () => {
-    // const queryClient = useQueryClient();
     const [activeDataset, setActiveDataset] = useState('allResults');
 
     const resultsData = useQuery({
@@ -110,10 +50,18 @@ export const Results =  () => {
     console.log(datasets);
     const itemCount = data ? data[activeDataset].totalResultsCount : null;
 
+    // To do - better loading/pending state. 
+    // I'd assume there would be a design or a generic loading spinner component for this.
     return status === 'pending' ? (
-        <p>Search results are loading ...</p>
+        <div className={styles.resultsContainer}>
+            <p>Search results are loading ...</p>
+        </div>
     ) : (
-        <>
+        // I experimented with nesting the grid by adding row and col-9 div's here to limit the width
+        // of the results container on desktop size screens. Neither gave me the width I was after,
+        // and I also started to get into conditionally adding classes based on screen width. I personally 
+        // prefer to handle it in CSS to avoid having to listen for changes of screen width.
+        <div className={styles.resultsContainer}>
             <DatasetList datasets={datasets} activeDataset={activeDataset} setActiveDataset={setActiveDataset} />
             <p className={`${styles.showingFor} body-xsmall`}>Showing results for <strong>phil foden</strong></p>
             <div className={styles.resultItems}>
@@ -128,16 +76,9 @@ export const Results =  () => {
                     })
                     return (
                         <Item item={item} formattedDate={formattedDate} key={item.id} />
-                        // <article key={item.id}>
-                        //     <img src={`${item.image?.url || 'https://www.mancity.com/meta/media/zzmf0yr0/comingup_16x9_mar.jpg'}?width=164`} alt={item.image?.altText || item.title} />
-                        //     <h3>Subtitle</h3>
-                        //     <span>{formattedDate}</span>
-                        //     <h2>{item.title}</h2>
-                        //     <p>{item.body}...</p>
-                        // </article>
                 )})}
             </div>
-        </>
+        </div>
     )
 }
 

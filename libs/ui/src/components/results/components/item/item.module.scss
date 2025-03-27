@@ -24,17 +24,15 @@
         width: 80px;
     }
 
-    // h2 {
-    //     margin-bottom: var(--spacing-4);
-    // }
-
     p {
         grid-column: span 2;
     }
 
+    // Check: probably a variable for the screen sizes
     @media only screen and (min-width: 768px) {
         grid-template-columns: 164px 1fr;
         column-gap: var(--spacing-6);
+        padding: var(--spacing-7);
 
         .imgLink {
             grid-row: span 2;
@@ -50,6 +48,10 @@
         p {
             grid-column: 2 / span 1;
         }
+    }
+
+    @media only screen and (min-width: 1440px) {
+        padding: var(--spacing-8);
     }
 }
 
@@ -69,7 +71,7 @@
 }
 
 // I'm always a little wary about making a link look less like a link. But I made the assumption
-// that the title would be a link and its quite a common pattern
+// that the title would be a link which is quite a common pattern.
 .titleLink {
     color: var(--colour-content-primary);
     text-decoration: none;

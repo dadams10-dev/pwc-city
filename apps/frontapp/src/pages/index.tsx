@@ -14,6 +14,9 @@ export function Index() {
         <div className="col-12">
           <div className={styles.page}>
             <Results />
+            {
+              // <!-- CTAs for shop -->
+            }
           </div>
         </div>
       </div>
